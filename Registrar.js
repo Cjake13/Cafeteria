@@ -232,7 +232,7 @@ async function handleRegistration(formData) {
         
         // Redirigir al login después de 2 segundos
         setTimeout(() => {
-            window.location.href = 'Login.html';
+            window.location.href = 'index.html';
         }, 2000);
         
         return true;
