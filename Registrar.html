@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Sistema Cafetería</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px 20px 0 0 !important;
+            border: none;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .card-header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+
+        .card-header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .card-body {
+            padding: 40px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 12px 15px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 200px;
+            border: 2px dashed #e1e5e9;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .image-preview:hover {
+            border-color: #667eea;
+            background-color: rgba(102, 126, 234, 0.05);
+        }
+
+        .image-preview-text {
+            color: #666;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 10px;
+            padding: 15px;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .role-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .role-section h5 {
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .role-section p {
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 5px;
+        }
+
+        .admin-password-section {
+            display: none;
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+
+        .invalid-feedback {
+            font-size: 0.9em;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e1e5e9;
+        }
+
+        .login-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .password-strength {
+            margin-top: 5px;
+            font-size: 0.85em;
+        }
+
+        .strength-weak { color: #dc3545; }
+        .strength-medium { color: #ffc107; }
+        .strength-strong { color: #28a745; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center w-100">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h1><i class="bi bi-cup-hot"></i> Registro</h1>
+                        <p>Únete a nuestra cafetería</p>
+                    </div>
+                    <div class="card-body">
+                        <form id="registroForm">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">
+                                    <i class="bi bi-person"></i> Nombre completo *
+                                </label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
+                                <div class="invalid-feedback" id="nombreError"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">
+                                    <i class="bi bi-envelope"></i> Correo electrónico *
+                                </label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <div class="invalid-feedback" id="emailError"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    <i class="bi bi-lock"></i> Contraseña *
+                                </label>
+                                <input type="password" class="form-control" id="password" name="password" required>
+                                <div class="password-strength" id="passwordStrength"></div>
+                                <div class="invalid-feedback" id="passwordError"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label">
+                                    <i class="bi bi-lock-fill"></i> Confirmar contraseña *
+                                </label>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                                <div class="invalid-feedback" id="confirmPasswordError"></div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="rol" class="form-label">
+                                    <i class="bi bi-shield"></i> Tipo de cuenta
+                                </label>
+                                <select class="form-select" id="rol" name="rol">
+                                    <option value="cliente" selected>Cliente</option>
+                                    <option value="admin">Administrador</option>
+                                </select>
+                                
+                                <div class="admin-password-section" id="adminPasswordSection">
+                                    <div class="alert alert-warning">
+                                        <i class="bi bi-exclamation-triangle"></i>
+                                        <strong>Acceso Administrador:</strong> Se requiere contraseña especial para crear cuenta de administrador.
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="adminPassword" class="form-label">
+                                            <i class="bi bi-key"></i> Contraseña de administrador *
+                                        </label>
+                                        <input type="password" class="form-control" id="adminPassword" name="adminPassword">
+                                        <div class="invalid-feedback" id="adminPasswordError"></div>
+                                    </div>
+                                </div>
+
+                                <div class="role-section">
+                                    <h5><i class="bi bi-info-circle"></i> Información de roles:</h5>
+                                    <p><strong>Cliente:</strong> Puede realizar pedidos, ver menú y gestionar su perfil.</p>
+                                    <p><strong>Administrador:</strong> Acceso completo al sistema, gestión de productos, usuarios y reportes.</p>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="imagen" class="form-label">
+                                    <i class="bi bi-camera"></i> Foto de perfil
+                                </label>
+                                <input type="file" class="form-control" id="imagen" name="imagen" accept="image/*" style="display: none;">
+                                <div class="image-preview" id="imagePreview" onclick="document.getElementById('imagen').click()">
+                                    <div class="image-preview-text">
+                                        <i class="bi bi-camera" style="font-size: 2em; margin-bottom: 10px;"></i><br>
+                                        Haz clic para seleccionar una imagen
+                                    </div>
+                                </div>
+                                <div class="invalid-feedback" id="imagenError"></div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-person-plus"></i> Registrarse
+                            </button>
+                        </form>
+
+                        <div class="login-link">
+                            <p>¿Ya tienes una cuenta? <a href="Login.html">Inicia sesión aquí</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Registrar.js"></script>
+</body>
+</html>
